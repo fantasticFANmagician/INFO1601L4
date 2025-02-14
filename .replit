@@ -1,4 +1,6 @@
 hidden=[".config"]
+modules = ["web", "nix"]
+run = "npx serve -p 8080"
 
 # hosting is currently hardcoded for this language
 # [hosting]
@@ -6,7 +8,7 @@ hidden=[".config"]
 # directory= "/"
 
 [nix]
-channel = "stable-21_11"
+channel = "stable-24_05"
 
 [gitHubImport]
 requiredFiles = [".replit", "replit.nix", ".config"]
@@ -32,3 +34,17 @@ pattern = "**/*.html"
 start = "vscode-html-language-server --stdio"
 [languages.html.languageServer.initializationOptions]
 provideFormatter = true
+
+[deployment]
+run = ["sh", "-c", "npx serve -p 8080"]
+
+[workflows]
+runButton = "Run"
+
+[[workflows.workflow]]
+name = "Run"
+author = 39024306
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx serve -p 8080"
